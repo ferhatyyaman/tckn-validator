@@ -1,8 +1,12 @@
 {
   "name": "tckn-validator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The npm package called \"TCKN Lookup\" allows you to perform queries for the Turkish Republic Identification Number (TC Kimlik Numarası). With this package, you can easily validate the TC Kimlik Numarası of individuals in the Republic of Turkey.",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ferhatyyaman/tckn-validator.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

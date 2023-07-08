@@ -1,8 +1,8 @@
+// TCNOKontrol.js dosyası
 import React from 'react';
-import { StyleSheet, View, Button, TextInput, Alert, Text } from 'react-native';
+import { StyleSheet,Text } from 'react-native';
 
-
-const TCNOKontrol = (TCNO) => {
+const TCNOKontrol = ({ TCNO }) => {
   const tek = [0, 2, 4, 6, 8].reduce((sum, index) => sum + parseInt(TCNO[index]), 0) * 7;
   const cift = [1, 3, 5, 7].reduce((sum, index) => sum + parseInt(TCNO[index]), 0);
   const sonuc = Math.abs(tek - cift);
@@ -15,69 +15,23 @@ const TCNOKontrol = (TCNO) => {
     sonuc % 10 !== parseInt(TCNO[9]) ||
     TCToplam % 10 !== parseInt(TCNO[10])
   ) {
-    return false;
+    return <Text style={styles.invalidText}>Yanlış TC kimlik no</Text>;
   }
-  return true;
+
+  return <Text style={styles.validText}>Doğru TC kimlik no</Text>;
 };
 
-
-const App = () => {
-  const [TCNO, setTCNO] = React.useState('');
-
-  return (
-    <View style={styles.container}>
-      <Text style={styles.header}>TC Kimlik No Kontrol</Text>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          onChangeText={setTCNO}
-          value={TCNO}
-          placeholder="TC kimlik no giriniz"
-          keyboardType="numeric"
-        />
-      </View>
-      <Button
-        title="Kontrol Et"
-        onPress={() => {
-          if(TCNOKontrol(TCNO)) {
-            Alert.alert("Doğru TC kimlik no");
-          } else {
-            Alert.alert("Yanlış TC kimlik no");
-          }
-        }}
-      />
-    </View>
-  );
-}
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 30,
-    justifyContent: 'center',
-    backgroundColor: '#f5f5f5',
-  },
-  header: {
-    fontSize: 25,
-    color: 'black',
-    fontWeight: 'bold',
-    marginBottom: 20,
+  invalidText: {
+    fontSize: 16,
+    color: 'red',
     textAlign: 'center',
   },
-  inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 20,
-    paddingLeft: 5,
-    borderRadius:5,
+  validText: {
+    fontSize: 16,
+    color: 'green',
+    textAlign: 'center',
   },
-  input: {
-    flex: 1,
-    height: 55,
-    marginLeft: 5,
-  }
 });
 
-export default App;
+export default TCNOKontrol;
